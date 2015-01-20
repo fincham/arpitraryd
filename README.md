@@ -14,7 +14,7 @@ iface=eth0 # the interface to listen on. will be put in to promiscuous
 .....               # form IP=MAC 
 </pre>
 
-It's been running for several months on a small LAN (~100 machines) which had 
+It ran for more than 5 years on a small LAN (~100 machines) which had 
 previously been served by an OpenBSD box running arpcatch.  Nothing has exploded 
 yet, but you run this code at your own risk. This package is released in to 
 the public domain.
