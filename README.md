@@ -1,6 +1,6 @@
 # arpitraryd
 
-This program re-implements the functionality of [arpcatch](http://www.openbsd.org/4.3_packages/sh/arpcatch-19970824.tgz-long.html) daemon in OpenBSD. <http://www.openbsd.org/4.6_packages/sh/arpcatch-19970824.tgz-long.html>
+This program re-implements the functionality of [arpcatch](http://www.openbsd.org/4.3_packages/sh/arpcatch-19970824.tgz-long.html) daemon in OpenBSD.
 
 The configuration file format is thus:
 
