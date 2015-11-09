@@ -7,11 +7,11 @@ The configuration file format is thus:
 <pre>
 [global]
 iface=eth0 # the interface to listen on. will be put in to promiscuous 
-       # mode by SCAPY
+           # mode by SCAPY
 
 [mappings]
 192.0.2.1=ab:ab:ab:ab:ab:ab # define your mappings here in the 
-.....               # form IP=MAC 
+.....                       # form IP=MAC 
 </pre>
 
 It ran for more than 5 years on a small LAN (~100 machines) which had 
