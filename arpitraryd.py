@@ -2,7 +2,8 @@
 
 # Michael Fincham <michael@unleash.co.nz> 2010-11-04
 
-import scapy, ConfigParser, syslog, signal, sys
+import ConfigParser, syslog, signal, sys
+from scapy.all import *
 
 mappings = {}
 pcap_iface = ''
@@ -12,13 +13,14 @@ def signal_handler(signal, frame):
 	sys.exit(0)
 	
 def callback(packet):
-	arp = packet[scapy.ARP]
+	arp = packet[ARP]
 	if arp.op == 1 and arp.pdst in mappings: # 1 is "who-has"
 		reply_mac = mappings[arp.pdst]
-	 	reply_arp = scapy.ARP(hwsrc=reply_mac, pdst = arp.psrc, psrc = arp.pdst, op=2)
-	 	frame = scapy.Ether(dst=arp.hwsrc)
-	 	scapy.sendp(frame / reply_arp, verbose = False, iface=pcap_iface)
-	 	# syslog.syslog("Poisoned %s with an entry for %s (%s)" % (arp.psrc,arp.pdst,reply_mac))
+	 	reply_arp = ARP(hwsrc=reply_mac, pdst = arp.psrc, psrc = arp.pdst, op=2)
+	 	frame = Ether(dst=arp.hwsrc)
+	 	sendp(frame / reply_arp, verbose = False, iface=pcap_iface)
+	 	syslog.syslog("Poisoned %s with an entry for %s (%s)" % (arp.psrc,arp.pdst,reply_mac))
+	 	print "Poisoned %s with an entry for %s (%s)" % (arp.psrc,arp.pdst,reply_mac)
 
 if __name__ == "__main__":
 	syslog.openlog('arpitraryd')
@@ -27,7 +29,7 @@ if __name__ == "__main__":
 	syslog.syslog('Reading config file...');
 	try:
 		config = ConfigParser.RawConfigParser()
-		config.read('/opt/unleash/arpitraryd/arpitraryd.conf')
+		config.read('arpitraryd.conf')
 		for ip, mac in config.items('mappings'):
 			mappings[ip] = mac
 		pcap_iface = config.get('global','iface')
@@ -35,4 +37,4 @@ if __name__ == "__main__":
 		syslog.syslog('An error reading the config file.')
 		sys.exit(2)
 	syslog.syslog("Starting pcap on %s" % pcap_iface)
-	scapy.sniff(prn=callback, iface=pcap_iface, filter="arp", store=0)
+	sniff(prn=callback, iface=pcap_iface, filter="arp", store=0)
