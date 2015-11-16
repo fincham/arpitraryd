@@ -19,4 +19,4 @@ previously been served by an OpenBSD box running arpcatch.  Nothing has exploded
 yet, but you run this code at your own risk. This package is released in to 
 the public domain.
 
-This package depends on [SCAPY](http://www.secdev.org/projects/scapy/) and doesn't actually work with the current SCAPY release :(
+This package depends on [SCAPY](http://www.secdev.org/projects/scapy/).
