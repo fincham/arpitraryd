@@ -1,6 +1,6 @@
 # arpitraryd
 
-This program re-implements the functionality of the  [arpcatch](http://www.openbsd.org/4.3_packages/sh/arpcatch-19970824.tgz-long.html) daemon in OpenBSD.
+This program re-implements the functionality of the  [arpcatch](http://www.openbsd.org/4.3_packages/sh/arpcatch-19970824.tgz-long.html) daemon in OpenBSD (e.g. it will listen on a network interface and reply to ARP requests with whatever MAC address it is configured to for a given IP).
 
 The configuration file format is thus:
 
